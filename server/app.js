@@ -1,7 +1,7 @@
 const express = require('express')
 const app=express()
 const userRoute=require('./routes/userRoute')
-// const adminRoute=require('./routes/adminRoute')
+const adminRoute=require('./routes/adminRoute')
 const dbConnect = require('./config/dbconnect')
 const cors = require('cors')
 const cookieParser =require('cookie-parser')
@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(express.static(path.resolve()+"/public"))
 
 app.use('/',userRoute)
-// app.use('/admin',adminRoute)
+app.use('/admin',adminRoute)
  
  
 

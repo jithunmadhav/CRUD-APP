@@ -7,6 +7,9 @@ import axios from '././axios';
 import { useEffect } from 'react';
 import {useDispatch,useSelector} from 'react-redux'
 import EditProfile from './components/EditProfile/EditProfile';
+import Adminhome from './components/Adminhome/Adminhome';
+import Adminlogin from './components/Adminlogin/Adminlogin';
+import EditUser from './components/EditUser/EditUser';
 
 function App() {
  const {user,admin,refresh}=useSelector((state)=>{
@@ -19,6 +22,10 @@ function App() {
      axios.get('/checkAuth').then((response)=>{
       console.log(response);
       dispatch({type:'user',payload:{login: response.data.logged,details:response.data.details}});
+     })
+     axios.get('/admin/adminAuth').then((response)=>{
+      console.log(response);
+      dispatch({type:'admin',payload:{adminLog:response.data.logged,details:response.data.details}})
      })
   }, [refresh])
   return (
@@ -43,8 +50,20 @@ function App() {
         <Route  element={<EditProfile />} path='/editProfile'/> 
         </Routes>
         }
-
-
+        { admin.adminLog===false && 
+        <Routes>
+          <Route element={<Adminlogin/>} path='/admin/adminLogin' />
+          <Route element={<Navigate to={'/admin/adminLogin'}/>} path='/admin/adminHome' />
+          <Route element={<Navigate to={'/admin/adminLogin'}/>} path='/admin/editUser:id'/>
+        </Routes>
+        }
+        { admin.adminLog===true && 
+        <Routes>
+          <Route element={<Navigate to={'/admin/adminHome'}/>} path='/admin/adminLogin' />
+          <Route element={<Adminhome/>} path='/admin/adminHome' />
+          <Route element={<EditUser/>} path='/admin/editUser/:id'/>
+        </Routes>
+        }
 
       </Router>
     </div>

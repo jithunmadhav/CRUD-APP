@@ -28,7 +28,8 @@ const user=useSelector((state)=>{
                 <div className="left">
                     <div className="top_link"> <Link onClick={handleLogout} > <img src="https://drive.google.com/u/0/uc?id=16U__U5dJdaTfNGobB_OpwAJ73vM50rPV&export=download" alt="img"/>LogOut</Link></div>
                     <div className="contact">
-                    <img src={`${imgURL}/${user.details.image.filename}`} style={{objectFit:'cover'}} alt='' width="100"  className="rounded-circle" />
+                    
+                    <img src={`${user.details.image!==undefined ? imgURL+user.details.image.filename : 'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=826&t=st=1680295524~exp=1680296124~hmac=02e23136e23578ef52071ce6ce8be6ecd2a32c6bef946fcacd4e6e788ed33360'}`} style={{objectFit:'cover'}} alt='' width="100"  className="rounded-circle" />
                     <h3>{user.details.name}</h3>
             <button>
              <Link to={'/editProfile'} style={{textDecoration:'none', color:'white'}}>Edit Profile Picture</Link></button>
