@@ -10,6 +10,7 @@ import EditProfile from './components/EditProfile/EditProfile';
 import Adminhome from './components/Adminhome/Adminhome';
 import Adminlogin from './components/Adminlogin/Adminlogin';
 import EditUser from './components/EditUser/EditUser';
+import CreateUser from './components/CreateUser/CreateUser';
 
 function App() {
  const {user,admin,refresh}=useSelector((state)=>{
@@ -55,6 +56,7 @@ function App() {
           <Route element={<Adminlogin/>} path='/admin/adminLogin' />
           <Route element={<Navigate to={'/admin/adminLogin'}/>} path='/admin/adminHome' />
           <Route element={<Navigate to={'/admin/adminLogin'}/>} path='/admin/editUser:id'/>
+          <Route element={<Navigate to={'/admin/adminLogin'}/>} path='/admin/createUser'/>
         </Routes>
         }
         { admin.adminLog===true && 
@@ -62,6 +64,7 @@ function App() {
           <Route element={<Navigate to={'/admin/adminHome'}/>} path='/admin/adminLogin' />
           <Route element={<Adminhome/>} path='/admin/adminHome' />
           <Route element={<EditUser/>} path='/admin/editUser/:id'/>
+          <Route element={<CreateUser/>} path='/admin/createUser'/>
         </Routes>
         }
 

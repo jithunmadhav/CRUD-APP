@@ -5,7 +5,7 @@ const userModel = require('../model/userModel');
 module.exports={
 postAdminLogin:async(req,res)=>{
     try {
-        console.log( req.body.email);
+      
         const admin=await adminModel.findOne({email:req.body.email})
         if(admin){
             if(req.body.password==admin.password){
@@ -30,7 +30,7 @@ postAdminLogin:async(req,res)=>{
 },
 getUserDetails:async (req,res)=>{
     try {
-        const user=await userModel.find({ name:new RegExp(req.query.name, 'i')}, {password:0}).lean();
+        const user=await userModel.find({ name:new RegExp(req.query.search, 'i')}, {password:0}).lean();
         if(user.length ?? 1 !=0){
             res.json({user,err:false,message:'data found'})
         }else{

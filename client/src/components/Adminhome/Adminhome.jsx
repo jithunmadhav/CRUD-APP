@@ -8,16 +8,16 @@ import AdminNav from '../AdminNav/AdminNav'
 
 function Adminhome() {
 const [user, setuser] = useState([])
-
+const [search, setSearch] = useState('')
 const [refresh, setRefresh]=useState(false);
  
 const imgURL='http://localhost:4000/upload_img/'
 useEffect(() => {
-    axios.get('/admin/userDetails').then((response)=>{
+    axios.get('/admin/userDetails?search='+search).then((response)=>{
         console.log(response.data.user);
         setuser(response.data.user)
     })
-}, [refresh])
+}, [search,refresh])
 const handleDelete=(id)=>{
     axios.get('/admin/deleteUser'+id).then((response)=>{
         console.log(response.data);
@@ -26,7 +26,7 @@ const handleDelete=(id)=>{
 }
   return (
     <div>
-    <AdminNav></AdminNav>
+    <AdminNav setSearch={setSearch} search={search}></AdminNav>
     <div className="table-main">
         <div className="table-container">
           <table className="table align-middle mb-0 bg-white mt-3">

@@ -5,7 +5,7 @@ import axios from '../../axios'
 import { useDispatch } from 'react-redux'
  
 
-function AdminNav() {
+function AdminNav({search,setSearch}) {
   const dispath=useDispatch();
   const navigate=useNavigate();
   const handleLogout=()=>{
@@ -16,16 +16,17 @@ function AdminNav() {
       return navigate('/admin/adminLogin');
     })
   }
+ 
   return (
     <div className="navBar">
     <div className="navContainer">
       
       <div className="nav-sec 1">
         <div style={{ display:'flex' }} >
-          <input type="text" placeholder='search user'   />
+          <input type="text" placeholder='search user'  value={search} onChange={(e)=>setSearch(e.target.value)}  />
         </div>
-        <Link to="/admin/create-user">
-        <button >Create User</button>
+        <Link to="/admin/createUser">
+        <button>Create User</button>
         </Link>
 
       </div>

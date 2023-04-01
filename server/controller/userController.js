@@ -80,8 +80,6 @@ module.exports={
        }
     },
     editProfile:async(req,res)=>{
-        console.log(req.body);
-        console.log(req.file);
         await userModel.updateMany({_id:req.body.id},{$set:{
             name:req.body.name,
             image:req.file
